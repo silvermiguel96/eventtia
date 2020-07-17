@@ -10,14 +10,25 @@
     <v-card-text>
       <div v-for="activite in activites" :key="activite.id" class="my-1">
         <v-row>
-          <v-col cols="2" md="3">
+          <v-col cols="2" md="3" class="pr-0">
             <h5 class="textSmall">{{activite.timeUno}}</h5>
             <h5 class="textSmall">{{activite.timeTwo}}</h5>
           </v-col>
           <v-col cols="6" md="5">
             <h5>{{activite.nameActivity}}</h5>
             <span class="textSmall">{{activite.NameSpeaker}} | {{activite.titleSpeaker}}</span>
-            <v-progress-linear color="secondary" value="60"></v-progress-linear>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-progress-linear
+                  v-bind="attrs"
+                  v-on="on"
+                  color="secondary"
+                  :value="activite.percentage"
+                  height="8"
+                ></v-progress-linear>
+              </template>
+              <span>{{activite.time}}</span>
+            </v-tooltip>
           </v-col>
           <v-col cols="3" class="px-0">
             <div class="text-center">
@@ -50,25 +61,31 @@ export default {
           nameActivity: "Name of the Activity",
           NameSpeaker: "Evelyn J. Fields ",
           titleSpeaker: "CEO of Stay Green",
-          numberAttendees: "1.320"
+          numberAttendees: "1.320",
+          percentage: 70,
+          time: "44:30"
         },
         {
-          id: 1,
+          id: 2,
           timeUno: "8:00 AM",
           timeTwo: "9:00 AM",
           nameActivity: "Name of the Activity",
           NameSpeaker: "Evelyn J. Fields ",
           titleSpeaker: "CEO of Stay Green",
-          numberAttendees: "4.350"
+          numberAttendees: "4.350",
+          percentage: 40,
+          time: "30:30"
         },
         {
-          id: 1,
+          id: 3,
           timeUno: "8:00 AM",
           timeTwo: "9:00 AM",
           nameActivity: "Name of the Activity",
           NameSpeaker: "Evelyn J. Fields ",
           titleSpeaker: "CEO of Stay Green",
-          numberAttendees: "829"
+          numberAttendees: "829",
+          percentage: 20,
+          time: "20:30"
         }
       ]
     };
